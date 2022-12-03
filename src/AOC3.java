@@ -4,22 +4,6 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-/*
-*
-* [1, 2, 3, 4]
-* [2, 3, 5]
-* [3, 4, 5]
-*
-* max = 3
-* [2, 3, 4]
-* [2, 3, 5]
-* [3, 4, 5]
-*
-* max = 3
-* [3, 4]
-* [3, 5]
-* [3, 4, 5]
-* */
 
 public class AOC3{
 
@@ -92,10 +76,6 @@ public class AOC3{
             result += (p1);
         }
         System.out.println("Part 2: " + result);
-    }
-
-    private static int maxOfThree(int a, int b, int c){
-        return Math.max(a, Math.max(b, c));
     }
 
     private static int minOfThree(int a, int b, int c){
