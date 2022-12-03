@@ -7,8 +7,7 @@ public class AOC1 {
 
 
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File(args[0]);
-        scanner = new Scanner(file);
+        scanner = AocTemplate.getScanner(args[0]);
         aoc1ab();
     }
 
