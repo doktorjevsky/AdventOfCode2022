@@ -51,10 +51,8 @@ public class AOC7 {
 
     private static void setAllSizes(Directory d, List<Long> sizes){
         sizes.add(d.getSize());
-        if (d.getChildren().size() != 0){
-            for (Directory child : d.getChildren()){
-                setAllSizes(child, sizes);
-            }
+        for (Directory child : d.getChildren()){
+            setAllSizes(child, sizes);
         }
     }
 
