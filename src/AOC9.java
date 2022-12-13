@@ -121,32 +121,22 @@ public class AOC9 {
         }
 
         public void move(Position delta){
-            if (parent != null){
-                if (pos.dist(parent.getPos()) > 1){
-                    prevPos = pos.copy();
-                    pos = parent.getPrevPos();
-                    Position dummy = pos.copy();
-                    dummy.add(delta);
-                    if (!dummy.equals(parent.pos)){
-                        pos.add(delta);
-                    }
-                    if (child != null){
-                        child.move(delta);
-                    }
-                }
-            } else {
+            if (parent == null){
                 prevPos = pos.copy();
                 pos.add(delta);
-                child.move(delta);
+                if (child != null){
+                    child.move(delta);
+                }
+            } else {
+                if (pos.dist(parent.pos) > 1){
+                    prevPos = pos.copy();
+                    Position nDelta = delta.or(parent.prevPos.sub(pos));
+                    pos.add(nDelta);
+                    if (child != null){
+                        child.move(nDelta);
+                    }
+                }
             }
-        }
-
-        public void follow(){
-
-        }
-
-        public Position getPrevPos() {
-            return prevPos.copy();
         }
     }
 
@@ -180,6 +170,21 @@ public class AOC9 {
             int dy = Math.abs(y - p.getY());
             int dx = Math.abs(x - p.getX());
             return Math.max(dy, dx);
+        }
+
+        public Position sub(Position p){
+            return new Position(x - p.x, y - p.y);
+        }
+
+        public Position or(Position p){
+            int x1 = x == p.x ? x : x + p.x;
+            int y1 = y == p.y ? y : y + p.y;
+            return new Position(x1, y1);
+        }
+
+        @Override
+        public String toString(){
+            return "(" + x + ", " + y + ")";
         }
 
         @Override
