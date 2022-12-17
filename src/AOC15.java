@@ -45,6 +45,7 @@ public class AOC15 {
         int bound = 4000000;
         List<Point> ps;
         List<Point> temp = new ArrayList<>();
+        Point beacon = new Point(0,0);
 
         for (Sensor s1 : ss) {
             ps = s1.boundary();
@@ -56,13 +57,12 @@ public class AOC15 {
                     }
                 }
                 if (!inB) {
-                    temp.add(p);
+                    beacon = p;
+                    break;
                 }
-                inB = false;
             }
         }
-        Point p = temp.get(0);
-        long ans = ((long) p.x * (long) bound) + (long) p.y;
+        long ans = ((long) beacon.x * (long) bound) + (long) beacon.y;
         System.out.println("Part 2: " + ans);
 
 
